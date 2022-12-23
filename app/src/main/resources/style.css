@@ -1,0 +1,17 @@
+.button {
+	-fx-font-size: 16pt;
+	-fx-border-color: black;
+	-fx-border-width: 2px;
+}
+
+.canvas {
+	-fx-background-color: black;
+}
+
+.released-btn {
+	-fx-background-color: rgb(231, 157, 59);
+}
+
+.pressed-btn {
+	-fx-background-color: rgb(55, 109, 190);
+}

@@ -18,12 +18,19 @@ public class App extends Application {
         primaryStage.setTitle("Hello World!");
 
         BorderPane root = new BorderPane();
+
         Keyset keyset = new Keyset();
         root.setTop(keyset.getPane());
 
+        Dice dice = new Dice();
+        root.setCenter(dice.getPane());
+
+        Roll roll = new Roll(dice);
+        root.setBottom(roll.getPane());
+
         Scene scene = new Scene(root, 640, 480);
-        scene.getStylesheets().add("style.css");
-        primaryStage.setScene(new Scene(root, 640, 480));
+        root.getStylesheets().add("style.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }

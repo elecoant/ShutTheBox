@@ -33,8 +33,3 @@ javafx {
     version = "19"
     modules = [ 'javafx.controls' ]
 }
-
-tasks.named('test') {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
-}
