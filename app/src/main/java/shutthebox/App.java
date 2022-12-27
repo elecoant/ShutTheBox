@@ -9,9 +9,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
  
 public class App extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
+
+    private Keyset keyset;
+    private Dice dice;
+    private RollControl rollControl;
     
     @Override
     public void start(Stage primaryStage) {
@@ -19,18 +20,21 @@ public class App extends Application {
 
         BorderPane root = new BorderPane();
 
-        Keyset keyset = new Keyset();
+        keyset = new Keyset();
+        dice = new Dice();
+        rollControl = new RollControl(dice);
+        
         root.setTop(keyset.getPane());
-
-        Dice dice = new Dice();
         root.setCenter(dice.getPane());
-
-        Roll roll = new Roll(dice);
-        root.setBottom(roll.getPane());
+        root.setBottom(rollControl.getPane());
 
         Scene scene = new Scene(root, 640, 480);
         root.getStylesheets().add("style.css");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }

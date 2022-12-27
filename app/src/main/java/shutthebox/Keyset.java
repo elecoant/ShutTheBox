@@ -13,6 +13,8 @@ import javafx.scene.layout.Pane;
 
 public class Keyset {
 
+  private boolean enabled;
+
   private class Key {
   
     private Button button;
@@ -33,6 +35,10 @@ public class Keyset {
     }
   
     private void press() {
+      if (!enabled) {
+        return;
+      }
+
       if (down) {
         button.getStyleClass().remove("pressed-btn");
         button.getStyleClass().add("released-btn");
@@ -55,6 +61,8 @@ public class Keyset {
 
   public Keyset() {
     box = new HBox();
+    enabled = false;
+
     box.setPadding(new Insets(5, 0, 5, 0));
     box.setSpacing(5);
     box.setAlignment(Pos.CENTER);
@@ -68,7 +76,10 @@ public class Keyset {
       box.getChildren().add(k.getButton());
     }
   }
-  
+
+  public void setDisabled(boolean value) {
+    enabled = value;
+  }
 
   public Pane getPane() {
     return box;
