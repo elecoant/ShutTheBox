@@ -2,21 +2,26 @@ package shutthebox;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
-public class Roll {
+public class RollControl {
   
+  private GameControl gameControl;
   private HBox box;
   private Button button;
-  private Dice dice;
 
-  public Roll(Dice dice) {
+  public RollControl(GameControl gameControl) {
     box = new HBox();
-    box.setAlignment(Pos.CENTER);
     button = new Button();
+    this.gameControl = gameControl;
+
+    box.setAlignment(Pos.CENTER);
+    box.setPadding(new Insets(0, 0, 20, 0));
+
     button.setText("Roll");
     button.setOnAction(new EventHandler<ActionEvent>() {
       @Override
@@ -25,7 +30,10 @@ public class Roll {
       }
     });
     box.getChildren().add(button);
-    this.dice = dice;
+  }
+
+  public void setDisable(boolean value) {
+    button.setDisable(value);
   }
 
   public Pane getPane() {
@@ -33,6 +41,6 @@ public class Roll {
   }
 
   private void roll() {
-    dice.roll();
+    gameControl.rollDice();
   }
 }
